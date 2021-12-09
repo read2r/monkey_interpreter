@@ -7,6 +7,7 @@ type Token struct {
     Literal string
 }
 
+// TokenTypes and Values
 const (
     ILLEGAL = "ILLEGAL"
     EOF = "EOF"
@@ -43,6 +44,8 @@ const (
     RETURN = "RETURN"
 )
 
+// in keywords, string mean identifier
+// and this is connecting identifier to TokenType
 var keywords = map[string]TokenType {
     "fn": FUNCTION,
     "let": LET,
@@ -53,6 +56,10 @@ var keywords = map[string]TokenType {
     "return": RETURN,
 }
 
+// parameter is identifier
+// this function would return a TokenType already made and connected to the identifier
+// if there is no TokenType to be connected to given identifier(keyword),
+// return 'IDENT' TokenType.
 func LookupIdent(ident string) TokenType {
     if tok, ok := keywords[ident]; ok {
         return tok
